@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './assets/icons/logo.svg';
-import {SApp, SHeader, SLink, SLogo} from "./assets/styles/app.styles";
+import React, {useEffect, useRef} from 'react';
+import {Timer} from './components/Timer'
+import {CountdownImport} from "./components/CountdownInput";
+import styled from "styled-components";
+import {FlexSC} from "./assets/styles/FlexSC";
+
+const AppWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: aquamarine;
+  
+`
 
 function App() {
+    const renderCount = useRef(0)
+    useEffect(() => {
+        renderCount.current++
+    })
+
     return (
-        <SApp>
-            <SHeader>
-                <SLogo src={logo} alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <SLink
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </SLink>
-            </SHeader>
-        </SApp>
+        <AppWrapper>
+            <FlexSC justify='space-around'>
+                <Timer></Timer>
+                <CountdownImport></CountdownImport>
+            </FlexSC>
+        </AppWrapper>
     );
 }
 
